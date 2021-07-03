@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTextLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="hintTextAppearance">@style/TextAppearance.Design.Hint</item>
+        <item name="android:paddingBottom">8dp</item>
+    </style>
+
+    @style/SpinKitView
+    @style/SpinKitView.Circle
+    @style/SpinKitView.Large
+    @style/SpinKitView.Small
+    @style/SpinKitView.Small.DoubleBounce
+
+</resources>

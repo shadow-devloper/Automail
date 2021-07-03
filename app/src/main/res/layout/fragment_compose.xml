@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.compose.ComposeFragment">
+
+    <RelativeLayout
+        android:id="@+id/To"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <TextView
+            android:id="@+id/text_To_1"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="2dp"
+            android:textAlignment="center"
+            android:text="To:"
+            android:textSize="30sp"/>
+
+        <EditText
+            android:id="@+id/text_To_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_gravity="bottom"
+            android:inputType="textEmailAddress"
+            android:layout_toEndOf="@+id/text_To_1" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/CC"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/To">
+        <TextView
+            android:id="@+id/text_CC_1"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="2dp"
+            android:textAlignment="center"
+            android:text="Cc:"
+            android:textSize="30sp"/>
+
+        <EditText
+            android:id="@+id/text_CC_2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_gravity="bottom"
+            android:inputType="textEmailAddress"
+            android:layout_toEndOf="@+id/text_CC_1" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/Subject"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CC">
+        <TextView
+            android:id="@+id/text_Subject_1"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="2dp"
+            android:textAlignment="center"
+            android:text="Subject:"
+            android:textSize="30sp"/>
+
+        <EditText
+            android:id="@+id/text_Subject_2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_gravity="bottom"
+            android:layout_toEndOf="@+id/text_Subject_1" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/Body"
+        android:background="@drawable/round_button"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:scrollbars="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Subject"
+        app:layout_constraintBottom_toTopOf="@+id/send"
+        android:hint=" Say someting"
+        android:textSize="30sp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/send"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:background="@drawable/ic_send"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:backgroundTint="@color/tap_indicator_gray"
+        android:layout_marginBottom="25dp"
+        android:layout_marginEnd="25dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

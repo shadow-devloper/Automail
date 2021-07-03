@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "808888827161",
+    "project_id": "automail-91c9d",
+    "storage_bucket": "automail-91c9d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:808888827161:android:a5961e26b63af392925988",
+        "android_client_info": {
+          "package_name": "com.shadowDeveloper.automail"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "808888827161-oqdi7h8que659fve1nsq7189pgiidi8e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.shadowDeveloper.automail",
+            "certificate_hash": "6a04fd288b104f0a04291dea8fa1fec2e7addd79"
+          }
+        },
+        {
+          "client_id": "808888827161-igu0jdivq75fsaqbdal889acui0im68b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFL_mhR6XdTpi7bnf83NEQZ_Yw4Ie2fOM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "808888827161-igu0jdivq75fsaqbdal889acui0im68b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
