@@ -4,16 +4,22 @@ import androidx.lifecycle.ViewModel;
 
 public class HomeViewModel extends ViewModel {
 
-   int image;
-   String sender,header,desc,date,time;
 
-    public HomeViewModel(int image, String sender,String date,String time,String header,String desc) {
+
+   int image;
+   String sender_header,sender_email,cc,bcc,header,desc,date,time;
+
+    public HomeViewModel(int image, String sender_header,String sender_email,String cc,String bcc,String date,String time,String header,String desc) {
         this.image = image;
-        this.sender=sender;
+        this.sender_header=sender_header;
+        this.sender_email=sender_email;
+        this.cc=cc;
+        this.bcc=bcc;
         this.date=date;
         this.time=time;
         this.header = header;
         this.desc = desc;
+
 
     }
 
@@ -25,12 +31,36 @@ public class HomeViewModel extends ViewModel {
         this.image = image;
     }
 
-    public String getSender() {
-        return sender;
+    public String getSenderHeader() {
+        return sender_header;
     }
 
-    public void setSender(String sender) {
-        this.sender = sender;
+    public void setSenderHeader(String sender_header) {
+        this.sender_header = sender_header;
+    }
+
+    public String getCc() {
+        return cc;
+    }
+
+    public void setCc(String cc) {
+        this.cc = cc;
+    }
+
+    public String getBcc() {
+        return bcc;
+    }
+
+    public void setBcc(String bcc) {
+        this.bcc = bcc;
+    }
+
+    public String getSenderEmail() {
+        return sender_email;
+    }
+
+    public void setSenderEmail(String sender_email) {
+        this.sender_email = sender_email;
     }
 
     public String getDate() {

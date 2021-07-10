@@ -53,7 +53,7 @@ public class HomeFragment extends Fragment {
     ArrayList<HomeViewModel> homeViewModels;
     List<Message> messages;
     List<Header> headers;
-    String subject,from,description,date,time;
+    String subject,from_header,from_email,date,time,cc,bcc;
     String token_url = "https://oauth2.googleapis.com/token";
 
     private static final String TAG ="HOME FRAGMENT";
@@ -69,6 +69,10 @@ public class HomeFragment extends Fragment {
     int currentItems,totalItems,scrolledOutItems;
     String nextPageToken = "";
     SpinKitView progress;
+
+    public HomeFragment() {
+
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -207,42 +211,57 @@ public class HomeFragment extends Fragment {
                 message_url + "/" + id, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+                cc="";
+                bcc="";
                 Log.d(TAG, response.toString());
                 GsonBuilder gsonBuilder = new GsonBuilder();
-                Gson gson =gsonBuilder.create();
-                GmailMessages gmailMessages = gson.fromJson(response.toString(),GmailMessages.class);
-                Payload payload = gmailMessages.getPayload();
-                headers = payload.getHeaders();
-                for (int i = 0; i<headers.size(); i++) {
-                    if(headers.get(i).getName().equals("Subject")) {
-                       subject= headers.get(i).getValue();
-                    }
-                    if(headers.get(i).getName().equals("From")) {
+                Gson gson = gsonBuilder.create();
+                GmailMessages gmailMessages = gson.fromJson(response.toString(), GmailMessages.class);
+                List<String> labels = gmailMessages.getLabelIds();
+                for (String element : labels) {
+                    if (element.contains("INBOX")) {
 
-                        String from_imm= headers.get(i).getValue();
-                        String[] split = from_imm.split("<");
-                        from=split[0];
-                    }
-                    if(headers.get(i).getName().equals("Date")) {
-                        String[] split = headers.get(i).getValue().split(" ");
-                        date=split[1]+" "+split[2]+" "+split[3];
-                        time=split[4];
+                        Payload payload = gmailMessages.getPayload();
+                        headers = payload.getHeaders();
+                        for (int i = 0; i < headers.size(); i++) {
+                            if (headers.get(i).getName().equals("Subject")) {
+                                subject = headers.get(i).getValue();
+                            }
+                            if (headers.get(i).getName().equals("From")
+                                    ||headers.get(i).getName().equals("Sender")
+                                    ||headers.get(i).getName().equals("Reply To")) {
 
+                                String from_imm = headers.get(i).getValue();
+                                String[] split = from_imm.split("<");
+                                from_header = split[0];
+                                if(split.length>1) {
+                                    String[] split2 = split[1].split(">");
+                                    from_email = split2[0];
+                                } else {
+                                    from_email = split[0];
+                                }
+                            }
+                            if (headers.get(i).getName().equals("Date")) {
+                                String[] split = headers.get(i).getValue().split(" ");
+                                date = split[1] + " " + split[2] + " " + split[3];
+                                time = split[4];
+
+                            }
+
+                            if(headers.get(i).getName().equals("Cc")){
+                                cc = headers.get(i).getValue().replaceAll("[<>]","").replace("\"","");
+
+                            }
+                            if(headers.get(i).getName().equals("Bcc")){
+                                bcc = headers.get(i).getValue().replaceAll("[<>]","").replace("\"","");
+
+                            }
+                        }
+                        HomeViewModel msg = new HomeViewModel(R.drawable.ic_dot, from_header,from_email,cc,bcc,date, time, subject, gmailMessages.getSnippet());
+                        homeViewModels.add(msg);
+                        adapter.notifyDataSetChanged();
                     }
                 }
-
-                if(gmailMessages.getSnippet().length()<50){
-                    description=gmailMessages.getSnippet();
-                }
-                else{
-                    description=gmailMessages.getSnippet().substring(0,50)+"...";
-                }
-
-
-
-                HomeViewModel msg = new HomeViewModel(R.drawable.ic_dot,from,date,time,subject,description);
-                homeViewModels.add(msg);
-                adapter.notifyDataSetChanged();
             }
         }, new Response.ErrorListener() {
             @Override

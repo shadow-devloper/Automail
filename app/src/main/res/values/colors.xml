@@ -7,6 +7,32 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="blue">#2692ee</color>
+    <color name="lightBackgroundTextColor">#444444</color>
+    <color name="light_forest_green">#549d59</color>
+    <color name="light_grey">#f7f7f7</color>
+    <color name="light_navy_blue">#305081</color>
+    <color name="purple">#9013fe</color>
+    <color name="purpley">#8075d4</color>
+    <color name="purpley_pink">#ca399d</color>
+    <color name="purplish_pink">#d460b0</color>
+    <color name="purply">#7e4cb1</color>
+    <color name="purply_two">#9b36b3</color>
+    <color name="red">#ff6161</color>
+    <color name="reddish">#d43e3e</color>
+    <color name="steel">#868d9a</color>
+    <color name="silver">#eeeeee</color>
+    <color name="dark_beige">#b38d63</color>
+    <color name="dark_blue">#06113c</color>
+    <color name="dark_grey">#666666</color>
+    <color name="dark_khaki">#9f915b</color>
+    <color name="dark_khaki_two">#9c9f5b</color>
+    <color name="dark_salmon">#c26e61</color>
+    <color name="dark_toolbar_background">#ffffff</color>
+    <color name="darkish_green">#2a8530</color>
+    <color name="darkish_green_two">#216a26</color>
+    <color name="deep_lilac">#976fc0</color>
+    <color name="highlight">#d6ecff</color>
 
     <color name="blue_primary">#a2d9ff</color>
 
@@ -17,4 +43,15 @@
     <color name="intro_title_color">#000000</color>
     <color name="intro_desc_color">#656565</color>
     <color name="orange">#F9D423</color>
+    <color name ="milky_white">#FFFEF7</color>
+
+
+    <color name="colorSendLaterStyle">@color/blue</color>
+    <color name="colorSmartInboxCardHeader">@color/light_grey</color>
+    <color name="colorSnoozeStyle">@color/orange</color>
+    <color name="colorReminderStyle">@color/purple</color>
+
+    <color name="colorDivider">@color/silver</color>
+
+    <color name="surfaceColorElevated">@color/white</color>
 </resources>

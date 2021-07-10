@@ -10,7 +10,7 @@
 
     <string name="menu_home">Home</string>
     <string name="menu_create">Compose</string>
-    <string name="menu_history">History</string>
+    <string name="menu_history">Sent</string>
     <string name="menu_logout">Logout</string>
 
     <!--Strings related to login -->
@@ -34,5 +34,61 @@
     <string name="nointernet">Please check your internet connection</string>
     <string name="generic_error">Some Error occurred</string>
     <string name="default_client_secret">vGWRmMlzMavaANxxCN4qMD_R</string>
+
+    <string name="compose_attachment">Attachment</string>
+    <string name="compose_attachment_dialog_title">Choose attachment type</string>
+    <string name="compose_attachment_install_fm">Please install a File Manager.</string>
+    <string name="compose_attachment_select_file">Select a File to Upload</string>
+    <string name="compose_attachments">ATTACHMENTS</string>
+    <string name="compose_automail_1month">in a month</string>
+    <string name="compose_automail_24hr">tomorrow</string>
+    <string name="compose_automail_2days">in 2 days</string>
+    <string name="compose_automail_2weeks">in 2 weeks</string>
+    <string name="compose_automail_7days">in a week</string>
+    <string name="compose_automail_7pm">tonight at ~7pm</string>
+    <string name="compose_automail_if_no_response">if no response</string>
+    <string name="compose_automail_random">at a random time</string>
+    <string name="compose_automail_tmrwafternoon">tomorrow afternoon</string>
+    <string name="compose_automail_tmrwmorning">tomorrow morning</string>
+    <string name="compose_close">Close</string>
+    <string name="compose_error_blank">You can\'t send a blank email, silly. =]</string>
+    <string name="compose_error_invalid_recipients">Please correct the following invalid email addresses: %s.</string>
+    <string name="compose_error_no_recipients">Please include at least one recipient.</string>
+    <string name="compose_error_too_many_recipients">Please include 100 recipients or fewer.</string>
+    <string name="compose_label_bcc">BCC:</string>
+    <string name="compose_label_cc">CC:</string>
+    <string name="compose_label_date">Date:</string>
+    <string name="compose_label_from">From:</string>
+    <string name="compose_label_subject">Subject:</string>
+    <string name="compose_label_to">To:</string>
+    <string name="compose_message_scheduled">Message scheduled.</string>
+    <string name="compose_message_sent">Message sent.</string>
+    <string name="compose_readreceipt_description">The sender has requested a read receipt. If you do not wish to provide one, click here.</string>
+    <string name="compose_readreceipt_icon">Read receipt icon</string>
+    <string name="compose_readreceipt_remove">Remove read receipt</string>
+    <string name="compose_remind_me">Remind me</string>
+    <string name="compose_save">Save</string>
+    <string name="compose_save_as_draft">Save as draft?</string>
+    <string name="compose_save_draft_changes">Save changes to your draft?</string>
+    <string name="compose_send">Send</string>
+    <string name="compose_send_later">Send Later</string>
+    <string name="compose_toggle_cc_bcc">Toggle CC/BCC fields</string>
+    <string name="compose_upload_already_added">The file \"%s\" has already been added as an attachment.</string>
+    <string name="compose_upload_bad_attachment">Sorry, Gmail cannot send attachments of type: .%s</string>
+    <string name="compose_upload_error">Error uploading %2$s: %1$s</string>
+    <string name="compose_upload_file_not_found">Unexpected upload error. File not found.</string>
+    <string name="compose_upload_no_file">Unfortunately it seems like \"%s\" no longer exists.</string>
+    <string name="compose_upload_no_path">Hmm strange, we couldn\'t figure out the path of the file you\'re trying to upload…</string>
+    <string name="compose_upload_permission_denied">File access is required to upload attachments.</string>
+    <string name="compose_upload_permission_do_not_ask_again">File access is required to upload attachments. Please enable file access permissions by going to System Settings, tapping Permissions under App Settings, and then toggling the Storage permission.</string>
+    <string name="compose_upload_too_big">Sorry, the attachment \"%s\" is too large.</string>
+    <string name="compose_uploading_file">Uploading %s…</string>
+    <string name="compose_body">Say Something....</string>
+    <string name="compose_schedule_it">Schedule It</string>
+    <string name="compose_new_message">New Message</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="all_cc_bcc">Cc/Bcc</string>
+
 
 </resources>

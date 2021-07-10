@@ -40,6 +40,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.shadowDeveloper.automail.ui.home.HomeFragment;
 
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
@@ -61,12 +62,6 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
     private static final String TAG ="MAIN ACTIVITY";
     boolean doubleBackToExitPressedOnce=false;
     private NavController navController;
-    String token_url = "https://oauth2.googleapis.com/token";
-    String message_url,batch_url,host_url;
-    RequestQueue requestQueue;
-    String mAccessToken,mRefreshToken;
-    List<Message> messages;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,24 +74,8 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
 
-        /*
-        message_url = "https://www.googleapis.com/gmail/v1/users/me/messages";
-        batch_url = "/batch/gmail/v1";
-        host_url = "https://www.googleapis.com";
 
-        SharedPreferences sp=getSharedPreferences("datafile",MODE_PRIVATE);
-        if(sp.contains("access_token")){
-            mAccessToken=sp.getString("access_token","");
-            Log.d(TAG,mAccessToken);
 
-        }
-
-        if(sp.contains("refresh_token")) {
-            mRefreshToken=sp.getString("refresh_token","");
-            Log.d(TAG,mRefreshToken);
-        }
-
-         */
 
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -110,135 +89,22 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
                 R.id.nav_home, R.id.nav_compose, R.id.nav_history)
                 .setDrawerLayout(drawer)
                 .build();
+
         navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
         navigationView.setNavigationItemSelectedListener(this);
         updateNavHeader();
 
-        //requestQueue = Volley.newRequestQueue(this);
-        //fetchGmail(mAccessToken);
+
     }
 
-    /*
-
-    private void fetchGmail(String access_token) {
-        JsonObjectRequest gmailRequest = new JsonObjectRequest(Request.Method.GET
-                , message_url
-                , null
-                , new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                Log.d(TAG, response.toString());
-                GsonBuilder gsonBuilder = new GsonBuilder();
-                Gson gson =gsonBuilder.create();
-                Mails mails =gson.fromJson(response.toString(),Mails.class);
-                messages= mails.getMessages();
-                Log.d(TAG,String.valueOf(messages.size()));
-                for(int i=0;i<messages.size();i++){
-                    fetchMessages(messages.get(i).getId());
-                }
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse.statusCode==401) {
-                    refreshAccessToken();
-                }else {
-                    Toast.makeText(MainActivity.this,"Some Error occurred\nPlease retry after some time",Toast.LENGTH_LONG).show();
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() {
-                Map<String,String> headers = new HashMap<>();
-                headers.put("Authorization","Bearer "+access_token);
-                headers.put("Content-type","application/json");
-                return headers;
-            }
-        };
-        requestQueue.add(gmailRequest);
-    }
-
-
-    private void fetchMessages(String id ) {
-        JsonObjectRequest messageRequest = new JsonObjectRequest(Request.Method.GET,
-                message_url + "/" + id, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                Log.d(TAG, response.toString());
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d(TAG, com.shadowDeveloper.automail.VolleyErrorHelper.getMessage(error,MainActivity.this));
-                Toast.makeText(MainActivity.this,
-                        com.shadowDeveloper.automail.VolleyErrorHelper.getMessage(error,MainActivity.this),
-                        Toast.LENGTH_LONG).show();
-            }
-        }) {
-            @Override
-            public Map<String,String> getHeaders() {
-                Map<String,String> headers = new HashMap<>();
-                headers.put("Authorization","Bearer "+mAccessToken);
-                headers.put("Content-type","application/json");
-                return headers;
-            }
-        };
-        requestQueue.add(messageRequest);
-    }
-
-
-    private void refreshAccessToken() {
-        SharedPreferences sp=getSharedPreferences("datafile",MODE_PRIVATE);
-        try {
-            JSONObject jsonBody = new JSONObject();
-            jsonBody.put("client_id", getString(R.string.default_web_client_id));
-            jsonBody.put("client_secret",getString(R.string.default_client_secret));
-            jsonBody.put("refresh_token", sp.getString("refresh_token",""));
-            jsonBody.put("grant_type", "refresh_token");
-
-            JsonObjectRequest refreshTokenRequest = new JsonObjectRequest(Request.Method.POST,
-                    token_url,
-                    jsonBody,
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            final String message = response.toString();
-                            Log.d(TAG, message);
-                            try {
-                                mAccessToken = response.getString("access_token");
-                                SharedPreferences sp= getSharedPreferences("datafile",MODE_PRIVATE);
-                                SharedPreferences.Editor editor = sp.edit();
-                                editor.putString("access_token",mAccessToken).apply();
-                                fetchGmail(mAccessToken);
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Log.d(TAG, com.shadowDeveloper.automail.VolleyErrorHelper.getMessage(error,MainActivity.this));
-                    Toast.makeText(MainActivity.this,
-                            com.shadowDeveloper.automail.VolleyErrorHelper.getMessage(error,MainActivity.this),
-                            Toast.LENGTH_LONG).show();
-                }
-            });
-            requestQueue.add(refreshTokenRequest);
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
-
-     */
 
     @Override
     public void onBackPressed() {
-
-        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+        if(getSupportFragmentManager().getBackStackEntryCount()>0) {
+            getSupportFragmentManager().popBackStack();
+        } else if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
             binding.drawerLayout.closeDrawer(GravityCompat.START);
         } else {
             if(doubleBackToExitPressedOnce) {

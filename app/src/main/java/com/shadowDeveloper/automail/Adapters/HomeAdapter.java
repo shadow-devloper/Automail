@@ -1,5 +1,6 @@
 package com.shadowDeveloper.automail.Adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,16 +8,24 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.shadowDeveloper.automail.MainActivity;
 import com.shadowDeveloper.automail.R;
+import com.shadowDeveloper.automail.ui.MessageFragment;
+import com.shadowDeveloper.automail.ui.home.HomeFragment;
 import com.shadowDeveloper.automail.ui.home.HomeViewModel;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.myviewholder> {
+public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.myviewholder>  {
+
+    private Fragment fragment;
 
     ArrayList<HomeViewModel> homeViewModels;
 
@@ -38,14 +47,52 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.myviewholder> 
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull myviewholder holder, int position) {
+
+        String description;
+        String desc = homeViewModels.get(position).getDesc();
+        if (desc.length() < 50) {
+            description = desc;
+        } else {
+            description = desc.substring(0, 50) + "...";
+        }
+
         holder.img.setImageResource(homeViewModels.get(position).getImage());
-        holder.sender.setText(homeViewModels.get(position).getSender());
+        holder.sender.setText(homeViewModels.get(position).getSenderHeader());
         holder.date.setText(homeViewModels.get(position).getDate());
         holder.time.setText(homeViewModels.get(position).getTime());
         holder.header.setText(homeViewModels.get(position).getHeader());
-        holder.desc.setText(homeViewModels.get(position).getDesc());
+        holder.desc.setText(description);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AppCompatActivity appCompatActivity=(AppCompatActivity)view.getContext();
+                appCompatActivity.getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.drawer_layout,new MessageFragment(
+                                homeViewModels.get(position).getSenderHeader(),
+                                homeViewModels.get(position).getSenderEmail(),
+                                homeViewModels.get(position).getCc(),
+                                homeViewModels.get(position).getBcc(),
+                                homeViewModels.get(position).getDate(),
+                                homeViewModels.get(position).getTime(),
+                                homeViewModels.get(position).getHeader(),
+                                homeViewModels.get(position).getDesc()))
+                        .setCustomAnimations(R.anim.slide_up,R.anim.slide_down,R.anim.nav_default_pop_enter_anim,R.anim.slide_down)
+                        .addToBackStack(null).commit();
+            }
+
+        });
+
 
     }
+    /*
+
+    private void showBottomSheetDialog() {
+        Context context = ;
+        final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(view);
+    }
+
+     */
 
     @Override
     public int getItemCount() {
@@ -69,6 +116,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.myviewholder> 
 
         }
     }
+
+
 
 
 
